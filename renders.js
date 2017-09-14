@@ -89,12 +89,24 @@ function paragraphRenderer() {
   }
 }
 
-function textContentRenderer(styleName, styleName2) {
-  return (node: InlineContentNode, output: OutputFunction, state: RenderState, styles: RenderStyles) => (
-    <Text key={state.key} style={styleName2 ? [styles[styleName], styles[styleName2]] : styles[styleName]}>
-      {typeof node.content === 'string' ? node.content : output(node.content, state)}
-    </Text>
-  )
+function textContentRenderer(styleName, styleName2, wrappedStyle) {
+  return (node: InlineContentNode, output: OutputFunction, state: RenderState, styles: RenderStyles) => {
+    const text = (
+      <Text key={state.key} style={styleName2 ? [styles[styleName], styles[styleName2]] : styles[styleName]}>
+        {typeof node.content === 'string' ? node.content : output(node.content, state)}
+      </Text>
+    )
+
+    if (wrappedStyle) {
+      return (
+        <View style={wrappedStyle}>
+          {text}
+        </View>
+      )
+    }
+
+    return text
+  }
 }
 
 function paddedSize(size, style) {
@@ -123,7 +135,7 @@ export default Object.freeze({
       {'\n\n'}
     </Text>
   ),
-  codeBlock: textContentRenderer('codeBlock'),
+  codeBlock: textContentRenderer('codeBlock', null, 'codeBlockView'),
   del: textContentRenderer('del'),
   em: textContentRenderer('em'),
   heading: (node: HeadingNode, output: OutputFunction, state: RenderState, styles: RenderStyles) => (
