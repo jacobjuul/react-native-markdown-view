@@ -129,7 +129,7 @@ function paddedSize(size, style) {
 }
 
 export default Object.freeze({
-  blockQuote: textContentRenderer('blockQuote'),
+  blockQuote: textContentRenderer('blockQuote', null, 'blockQuoteView'),
   br: (node: EmptyNode, output: OutputFunction, state: RenderState, styles: RenderStyles) => (
     <Text key={state.key} style={styles.br}>
       {'\n\n'}
