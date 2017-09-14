@@ -89,7 +89,7 @@ function paragraphRenderer() {
   }
 }
 
-function textContentRenderer(styleName, styleName2, wrappedStyle) {
+function textContentRenderer(styleName, styleName2, viewStyleName) {
   return (node: InlineContentNode, output: OutputFunction, state: RenderState, styles: RenderStyles) => {
     const text = (
       <Text key={state.key} style={styleName2 ? [styles[styleName], styles[styleName2]] : styles[styleName]}>
@@ -97,9 +97,9 @@ function textContentRenderer(styleName, styleName2, wrappedStyle) {
       </Text>
     )
 
-    if (wrappedStyle) {
+    if (viewStyleName) {
       return (
-        <View style={wrappedStyle}>
+        <View style={viewStyleName}>
           {text}
         </View>
       )

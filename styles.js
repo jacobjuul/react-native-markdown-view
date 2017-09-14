@@ -3,6 +3,10 @@ export default Object.freeze({
     marginLeft: 10,
     opacity: 0.8,
   },
+  blockQuoteView: {
+    borderLeftWidth: 1,
+    borderLeftColor: 'grey',
+  },
   codeBlock: {
     fontFamily: 'Courier',
     fontWeight: '500',
