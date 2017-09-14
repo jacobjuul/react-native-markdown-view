@@ -99,7 +99,7 @@ function textContentRenderer(styleName, styleName2, viewStyleName) {
 
     if (viewStyleName) {
       return (
-        <View style={viewStyleName}>
+        <View style={styles[viewStyleName]}>
           {text}
         </View>
       )
